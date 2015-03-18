@@ -1,4 +1,4 @@
-class Ball()
+class Ball(){
 
 int xPos;
 int yPos;
@@ -8,9 +8,19 @@ const int widthBall;
 const int heightBall;
 
 public:
-  getX_Ball();
-  getY_Ball();
-  getBspeedX();
-  getBspeedY();
-  getWidthBall();
-  getHeightBall();
+setXBall();
+setYBall()
+setBspeedX();
+setBspeedY();
+setWidthBall();
+setHeightBall();
+
+getXBall();
+getYBall();
+getBspeedX();
+getBspeedY();
+getWidthBall();
+getHeightBall();
+  
+  
+};
