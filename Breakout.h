@@ -14,24 +14,7 @@ public:
 
 };
 
-class Ball{
-	int xPos;
-	int yPos;
-	int speedX;
-	int speedY;
-	const int  widthBall;
-	const int  heightBall;
 
-public:
-	getX_Ball();
-	getY_Ball();
-	getBallSpeed_X();
-	getBallSpeed_Y();
-	getWidth_Ball();
-	getHeight_Ball();
-
-
-};
 
 class Brick{
 	int xPos;
@@ -44,8 +27,6 @@ public:
 	getY_Brick();
 	getWidth_Brick();
 	getHeight_Brick();
-	
-
 
 };
 
