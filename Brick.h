@@ -6,8 +6,8 @@ class Brick{
   bool Brickhit;
   
   public:
-    setXBrick();
-    setYBrick();
+    setXBrick(int X1);
+    setYBrick(int Y1);
     getWidthBrick();
     setHeightBrick();
 
