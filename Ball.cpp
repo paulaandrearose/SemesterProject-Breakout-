@@ -30,12 +30,12 @@ move::Ball()
 
 }
 
-void setXspeed(int newSpeed){
-xSpeed = newSpeed;
+void setXspeed(int newXSpeed){
+xSpeed = newXSpeed;
 }
 
-void setYspeed(int newSpeed){
-  ySpeed = newSpeed;
+void setYspeed(int newYSpeed){
+  ySpeed = newYSpeed;
 }
 
 int getX(){
