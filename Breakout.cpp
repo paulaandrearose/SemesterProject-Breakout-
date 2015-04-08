@@ -12,6 +12,7 @@ bool loadMedia();
 void close();
 SDL_Window* gWindow = NULL;
 SDL_Surface* gScreenSurface = NULL;
+SDL_Surface* /*Surface name*/ = NULL;
 
 bool init() {
   //Initialization flag
@@ -34,7 +35,6 @@ bool init() {
       gScreenSurface = SDL_GetWindowSurface( gWindow );
     }
   }
-  
   return success;
 }
 
@@ -70,14 +70,27 @@ int main( int argc, char* args[]) {
       printf ( "Failed to load media!\n" );
     }
     else {
-      //Get window surface
-      screenSurface = SDL_GetWindowSurface ( window );
+      //Main loop flag
+      bool quit = false;
       
-      //Fill surface black
-      SDL_FillRect ( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0x00, 0x00, 0x00 ) );\
+      //Event handler
+      SDL_Event e;
       
-      //Update the surface
-      SDL_UpdateWindowSurface( gWindow );
+      //While app running
+      while ( !quit ) {
+        //Handle events on queue
+        while( SDL_PollEvent( &e ) != 0 ){
+          if ( e.type == SDL_QUIT ) {
+            quit = true;
+          }
+        }
+        
+        //Fill surface black
+        SDL_FillRect ( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0x00, 0x00, 0x00 ) );\
+        
+        //Update the surface
+        SDL_UpdateWindowSurface( gWindow );
+      }
     }
   }
   
