@@ -7,6 +7,14 @@ using namespace std;
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
+enum KeyPressSurfaces {
+  KEY_PRESS_SURFACE_DEFAULT,
+  KEY_PRESS_SURFACE_LEFT,
+  KEY_PRESS_SURFACE_RIGHT,
+  KEY_PRESS_SURFACE_SPACEBAR,
+  KEY_PRESS_SURFACE_TOTAL /*used to count number of all keys used for array size*/
+};
+
 bool init();
 bool loadMedia();
 void close();
@@ -82,6 +90,22 @@ int main( int argc, char* args[]) {
         while( SDL_PollEvent( &e ) != 0 ){
           if ( e.type == SDL_QUIT ) {
             quit = true;
+          }
+          else if( e.type == SDL_KEYDOWN ) {
+            switch( e.key.keysym.sym ) {
+              case SDLK_LEFT:
+                gCurrentSurface = gKeyPressSurfaces[ KEY_PRESS_SURFACE_LEFT ];
+                break;
+              case SDLK_RIGHT:
+                gCurrentSurface = gKeyPressSurfaces[ KEY_PRESS_SURFACE_RIGHT ];
+                break;
+              case SDLK_SPACEBAR:
+                gCurrentSurface = gKeyPressSurfaces[ KEY_PRESS_SURFACE_SPACEBAR ];
+                break;
+              default:
+                gCurrentSurface = gKeyPressSurfaces[ KEY_PRESS_SURFACE_DEFAULT ];
+                break;
+            }
           }
         }
         
