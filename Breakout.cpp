@@ -19,6 +19,7 @@ bool init();
 bool loadMedia();
 void close();
 SDL_Window* gWindow = NULL;
+SDL_Surface* loadSurface( std::string path );
 SDL_Surface* gScreenSurface = NULL;
 SDL_Surface* /*Surface name*/ = NULL;
 
@@ -64,6 +65,15 @@ void close() {
   
   //Quit SDL subsystems
   SDL_Quit();
+}
+
+SDL_Surface* loadSurface( std::string path ) {  /*THIS MAY NOT BE NECESSARY FOR PROJECT!!*/
+  //Load image at a specified path
+  SDL_Surface* loadedSurface = SDL_LoadBMP( path.c_str() );
+  if( loadedSurface == NULL ) {
+    printf( "Unable to load image%s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
+  }
+  return loadedSurface;
 }
 
 int main( int argc, char* args[]) {
