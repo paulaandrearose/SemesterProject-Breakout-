@@ -1,20 +1,12 @@
-class Brick{
-  int xPos;
-  int yPos;
-  const int widthBrick;
-  const int heightBrick;
-  bool Brickhit;
+class Brick
+{
+  int xPos = 0;
+  int yPos = 0;
+  const int widthBrick = 0;
+  const int heightBrick = 0;
   
   public:
-   void setXBrick(int X1);
-   void setYBrick(int Y1);
-   void setHeightBrick(int Hght);
-   void setWidthBrick(int W);
-   
-   int  getWidthBrick();
-   int  getXBrick();
-   int  getYBrick();
-   int getWidthBrick();
-   int getHeightBrick();
+    Brick(int x, int y, int width, int height);
+    int getX();
     
-    };
+}
