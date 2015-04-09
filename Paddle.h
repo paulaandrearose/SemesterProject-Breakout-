@@ -28,6 +28,7 @@ class Paddle
 
 	Paddle();
     //Paddle(SDL_Renderer * padREND);
+	void setEverything();
 	void movePaddle();
 	void setXVel( int newVel );
 	int getXVel();
@@ -40,6 +41,8 @@ class Paddle
 };
 
 #endif
+
+
 
 
 
