@@ -1,19 +1,9 @@
 #include <SDL.h>
 #include <stdio.h>
+#include <string>
 #include "Breakout.h"
 
 using namespace std;
-
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
-
-enum KeyPressSurfaces {
-  KEY_PRESS_SURFACE_DEFAULT,
-  KEY_PRESS_SURFACE_LEFT,
-  KEY_PRESS_SURFACE_RIGHT,
-  KEY_PRESS_SURFACE_SPACEBAR,
-  KEY_PRESS_SURFACE_TOTAL /*used to count number of all keys used for array size*/
-};
 
 bool init();
 bool loadMedia();
@@ -21,7 +11,10 @@ void close();
 SDL_Window* gWindow = NULL;
 SDL_Surface* loadSurface( std::string path );
 SDL_Surface* gScreenSurface = NULL;
-SDL_Surface* /*Surface name*/ = NULL;
+SDL_Surface* gCurrentSurface = NULL;
+SDL_Surface* gKeyPressSurfaces[ KEY_PRESS_SURFACE_TOTAL ];
+SDL_Renderer* gRenderer = NULL;
+
 
 bool init() {
   //Initialization flag
@@ -34,7 +27,7 @@ bool init() {
   }
   else {
     //Create Window
-    gWindow = SDL_CreateWindow( "Breakout!", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+    gWindow = SDL_CreateWindow( "Breakout!", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
     if( gWindow == NULL ) {
       printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
       success = false;
@@ -42,7 +35,16 @@ bool init() {
     else {
       //Get window surface
       gScreenSurface = SDL_GetWindowSurface( gWindow );
+	  gRenderer = SDL_CreateRenderer ( gWindow, -1, SDL_RENDERER_ACCELERATED );
+	  if ( gRenderer == NULL ) {
+		printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
+	    success = false;
+	  }
+	  else {
+	    SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
+	  }
     }
+	  
   }
   return success;
 }
@@ -52,15 +54,20 @@ bool loadMedia() {
   bool success = true;
   
   //TODO here is where we would load a background if necessary. 
+
+  return success;
 }
 
 void close() {
   //Deallocate surface
-  SDL_FreeSurface( /*Surface name*/ );
-  /*Surface name*/ = NULL;
+  for( int i = 0; i < KEY_PRESS_SURFACE_TOTAL; ++i ) {
+    SDL_FreeSurface( gKeyPressSurfaces[ i ] );
+	gKeyPressSurfaces[ i ] = NULL;
+  }
   
   //Destory Window
   SDL_DestroyWindow( gWindow );
+  SDL_DestroyRenderer( gRenderer );
   gWindow = NULL;
   
   //Quit SDL subsystems
@@ -93,8 +100,11 @@ int main( int argc, char* args[]) {
       
       //Event handler
       SDL_Event e;
+
+	  //Create Paddle
+	  Paddle paddle;
       
-      //While app running
+      //While game is running
       while ( !quit ) {
         //Handle events on queue
         while( SDL_PollEvent( &e ) != 0 ){
@@ -102,28 +112,45 @@ int main( int argc, char* args[]) {
             quit = true;
           }
           else if( e.type == SDL_KEYDOWN ) {
-            switch( e.key.keysym.sym ) {
+			switch( e.key.keysym.sym ) {
               case SDLK_LEFT:
-                gCurrentSurface = gKeyPressSurfaces[ KEY_PRESS_SURFACE_LEFT ];
+                paddle.setXVel(-10);
                 break;
               case SDLK_RIGHT:
-                gCurrentSurface = gKeyPressSurfaces[ KEY_PRESS_SURFACE_RIGHT ];
-                break;
-              case SDLK_SPACEBAR:
-                gCurrentSurface = gKeyPressSurfaces[ KEY_PRESS_SURFACE_SPACEBAR ];
+                paddle.setXVel(10);
                 break;
               default:
-                gCurrentSurface = gKeyPressSurfaces[ KEY_PRESS_SURFACE_DEFAULT ];
                 break;
             }
           }
+		  else if ( e.type == SDL_KEYUP ) {
+		    switch( e.key.keysym.sym ) {
+			  case SDLK_LEFT:
+			    paddle.setXVel(0);
+				break;
+			  case SDLK_RIGHT:
+				paddle.setXVel(0);
+				break;
+			  default:
+				break;
+			}
+		  }
+		  paddle.movePaddle();
+
+		//Clear Screen 
+		SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
+		SDL_RenderClear( gRenderer );
+
+		paddle.render( gRenderer );
+
+		//SDL_Rect fillRect = { paddle.getX(), 400, 100, 20 };
+		SDL_Rect fillRect = { paddle.getX(), paddle.getY(), paddle.getWidth(), paddle.getHeight() };
+		SDL_SetRenderDrawColor( gRenderer, 0x50, 0x90, 0xFF, 0xFF );
+		SDL_RenderFillRect( gRenderer, &fillRect );
+
+		//Update screen
+		SDL_RenderPresent( gRenderer );
         }
-        
-        //Fill surface black
-        SDL_FillRect ( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0x00, 0x00, 0x00 ) );\
-        
-        //Update the surface
-        SDL_UpdateWindowSurface( gWindow );
       }
     }
   }
