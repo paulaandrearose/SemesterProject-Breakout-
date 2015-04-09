@@ -64,6 +64,8 @@ void close() {
     SDL_FreeSurface( gKeyPressSurfaces[ i ] );
 	gKeyPressSurfaces[ i ] = NULL;
   }
+  SDL_FreeSurface( gScreenSurface );
+  SDL_FreeSurface( gCurrentSurface );
   
   //Destory Window
   SDL_DestroyWindow( gWindow );
@@ -103,6 +105,7 @@ int main( int argc, char* args[]) {
 
 	  //Create Paddle
 	  Paddle paddle;
+	  paddle.setEverything();
       
       //While game is running
       while ( !quit ) {
@@ -141,12 +144,8 @@ int main( int argc, char* args[]) {
 		SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
 		SDL_RenderClear( gRenderer );
 
+		//draw paddle
 		paddle.render( gRenderer );
-
-		//SDL_Rect fillRect = { paddle.getX(), 400, 100, 20 };
-		SDL_Rect fillRect = { paddle.getX(), paddle.getY(), paddle.getWidth(), paddle.getHeight() };
-		SDL_SetRenderDrawColor( gRenderer, 0x50, 0x90, 0xFF, 0xFF );
-		SDL_RenderFillRect( gRenderer, &fillRect );
 
 		//Update screen
 		SDL_RenderPresent( gRenderer );
