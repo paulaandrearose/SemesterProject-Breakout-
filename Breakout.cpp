@@ -106,6 +106,9 @@ int main( int argc, char* args[]) {
 	  //Create Paddle
 	  Paddle paddle;
 	  paddle.setEverything();
+
+	  BrickConfig brickConfig;
+	  brickConfig.setEverything();
       
       //While game is running
       while ( !quit ) {
@@ -144,8 +147,8 @@ int main( int argc, char* args[]) {
 		SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0xFF );
 		SDL_RenderClear( gRenderer );
 
-		//draw paddle
 		paddle.render( gRenderer );
+		brickConfig.render( gRenderer );
 
 		//Update screen
 		SDL_RenderPresent( gRenderer );
