@@ -1,4 +1,4 @@
-#include <SDL.h>
+#include <SDL2/SDL.h> 
 #include <stdio.h>
 #include <string>
 #include "Breakout.h"
@@ -67,24 +67,30 @@ bool checkCollision ( Ball ball, BrickConfig brickConfig ) {
 	int topBall,	topBrick;
 	int bottomBall,	bottomBrick;
 
-	leftBall	= ball.getX();					
-	rightBall	= ball.getX() + ball.getRadius() * 2;
-	topBall		= ball.getY();
-	bottomBall  = ball.getY() + ball.getRadius() * 2;
+	leftBall	= ball.left();					
+	rightBall	= ball.right();
+	topBall		= ball.top();
+	bottomBall  = ball.bottom();
 
-	for (something) { //TODO this nonsense
+	for ( int i=0; i < brickConfig.length(), i++) { 
+    //TODO create BrickConfig::length()  returns length of brickVect
+    //TODO create BrickConfig::left( int brickNum )   returns brick.left of brick "brickNum"
+    //            BrickConfig::right, top, and bottom as well
+    //uh, what about the paddle. this is designed specifically for the
+    //  ball and bricks... rethink design
 		
-		leftBrick	= brickConfig.getX();
-		rightBrick	= brickConfig.getX() + b.getWidth();
-		topBall		= brickConfig.getY();
-		bottomBrick = brickConfig.getY() + b.getHeight();
+		leftBrick	= brickConfig.left( i );
+		rightBrick	= brickConfig.right( i );
+		topBall		= brickConfig.top( i );
+		bottomBrick = brickConfig.bottom( i );
 
-		if( bottomBall  <= topBrick )		return false;
-		if( topBall		>= bottomBrick )	return false;
-		if( rightBall	<= leftBrick )		return false;
-		if( leftBall	>= rightBrick )		return false;
-		return true;
+		if( bottomBall  <= topBrick )		      
+    else if( topBall		>= bottomBrick )	return false;
+    else if( rightBall	<= leftBrick )		return false;
+    else if( leftBall	>= rightBrick )		return false;
+
 	}
+  return true;    //
 }*/
 
 void close() {
@@ -190,8 +196,8 @@ int main( int argc, char* args[]) {
 					//Update screen
 					SDL_RenderPresent( gRenderer );
 				}
-				//ball.move();                     
-				//SDL_RenderPresent( gRenderer );
+				ball.move();                     
+				SDL_RenderPresent( gRenderer );
 			}
 		}
 	}
