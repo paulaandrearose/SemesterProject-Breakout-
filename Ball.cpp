@@ -8,12 +8,17 @@ Ball::Ball() {
 	int xVel;
 	int yVel;
 	int speed;
+	int left, right, top, bottom;
 }
 
 void Ball::set() {
 	radius = 10;
 	xPos = SCREEN_WIDTH / 2;
 	yPos = 11 * SCREEN_HEIGHT / 12 - radius;
+	left = xPos;
+	right = left + 2 * radius;
+	top = yPos;
+	bottom = top + 2 * radius;
 	speed = 1; 
 	xVel = speed;
 	yVel = speed;  
@@ -45,6 +50,7 @@ void Ball::move() { //doesn't work yet
 		yPos = bottomBoundry - 2 * radius;
 		yVel *= -1;
 	}
+	
 }
 
 /*void Ball::render( SDL_Renderer *gRenderer ) {
