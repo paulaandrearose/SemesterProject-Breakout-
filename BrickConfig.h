@@ -4,17 +4,16 @@
 class Breakout;
 class Brick;
 class Paddle;
-//class Ball;
+class Ball;
 
 #include <SDL.h>
 #include <stdio.h>
 #include <string>
-#include <cmath>
 #include <vector>
 #include "Breakout.h"
 #include "Brick.h"
 #include "Paddle.h"
-//#include "Ball.h"
+#include "Ball.h"
 
 class BrickConfig {
 
@@ -30,8 +29,9 @@ class BrickConfig {
 	std::vector<Brick> brickVect;
 
 public:
+
 	BrickConfig(); 
-	void setEverything();
+	void set();
 	void render( SDL_Renderer* );
 };
 

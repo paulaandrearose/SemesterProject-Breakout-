@@ -17,7 +17,7 @@ BrickConfig::BrickConfig() {
 	vector<Brick> brickVect( numBricks );
 }
 
-void BrickConfig::setEverything() {
+void BrickConfig::set() {
 	numCol = 10;
 	numRow = 5;
 	numBricks = numCol * numRow;

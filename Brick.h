@@ -4,30 +4,28 @@
 class Breakout;
 class Paddle;
 class BrickConfig;
-//class Ball;
+class Ball;
 
 #include <SDL.h>
 #include <stdio.h>
-#include <string>
-#include <cmath>
 #include "Breakout.h"
 #include "Paddle.h"
 #include "BrickConfig.h"
-//#include "Ball.h"
+#include "Ball.h"
 
 class Brick
 {
-  int xPos;
-  int yPos;
-  int width;
-  int height;
+	int xPos;
+	int yPos;
+	int width;
+	int height;
   
-  public:
+public:
   
-  Brick();
-  Brick( int x, int y, int width, int height );
-  void set( int x, int y, int width, int height );
-  void render( SDL_Renderer* );
+	Brick();
+	Brick( int x, int y, int width, int height );
+	void set( int x, int y, int width, int height );
+	void render( SDL_Renderer* );
     
 };
 

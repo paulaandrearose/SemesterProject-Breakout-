@@ -4,57 +4,37 @@ using namespace std;
 int leftBoundry = 0;
 int rightBoundry = SCREEN_WIDTH;
 
-Paddle::Paddle(){
+Paddle::Paddle() {
 	int height = 20;
 	int width = 100;
 	int xPos = SCREEN_WIDTH/2 - width/2;
 	int yPos = 400  /*SCREEN_HEIGHT - SCREEN_HEIGHT/12*/;
 	int xVel = 0;
+	int velMult = 0;
 }
 
-void Paddle::setEverything() {
+void Paddle::set() {
 	height = 20;
 	width = 100;
 	xPos = SCREEN_WIDTH/2 - width/2;
-	yPos = 400  /*SCREEN_HEIGHT - SCREEN_HEIGHT/12*/;
+	yPos = SCREEN_HEIGHT - SCREEN_HEIGHT/12;
 	xVel = 0;
+	speed = 10; //
 }
 
-void Paddle::movePaddle(){
-	//xPos += xVel * velMult;
-	xPos += xVel;
+void Paddle::movePaddle() {
+	xPos += xVel*speed;
 
 	if( xPos <= leftBoundry ) {
 		xPos = leftBoundry;
 	}
-
 	else if(xPos >= ( rightBoundry - width ) ) {
 		xPos = rightBoundry - width;
 	}
 }
 
-void Paddle::setXVel( int newVel ){
+void Paddle::setXVel(int newVel) {
 	xVel = newVel;
-}
-
-int Paddle::getXVel(){
-	return this->xVel;
-} 
-
-int Paddle::getX(){
-	return xPos;
-}
-
-int Paddle::getY() {
-	return yPos;
-}
-
-int Paddle::getWidth() {
-	return width;
-}
-
-int Paddle::getHeight() {
-	return height;
 }
 
 void Paddle::render( SDL_Renderer* gRenderer ) {
