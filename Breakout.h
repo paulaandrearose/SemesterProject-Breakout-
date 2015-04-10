@@ -16,6 +16,10 @@ class Ball;
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
+const int leftBoundry   = 0;
+const int rightBoundry  = SCREEN_WIDTH;
+const int topBoundry	  = 0;
+const int bottomBoundry = SCREEN_HEIGHT;
 
 enum KeyPressSurfaces 
 {

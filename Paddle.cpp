@@ -1,9 +1,6 @@
 #include "Paddle.h"
 using namespace std;
 
-int leftBoundry = 0;
-int rightBoundry = SCREEN_WIDTH;
-
 Paddle::Paddle() {
 	int height = 20;
 	int width = 100;

@@ -7,6 +7,7 @@ using namespace std;
 
 bool init();
 bool loadMedia();
+bool checkCollision( SDL_Rect a, SDL_Rect b );
 void close();
 SDL_Window* gWindow = NULL;
 SDL_Surface* loadSurface( std::string path );
@@ -14,7 +15,6 @@ SDL_Surface* gScreenSurface = NULL;
 SDL_Surface* gCurrentSurface = NULL;
 SDL_Surface* gKeyPressSurfaces[ KEY_PRESS_SURFACE_TOTAL ];
 SDL_Renderer* gRenderer = NULL;
-
 
 bool init() {
 	
@@ -59,6 +59,33 @@ bool loadMedia() {
 
 	return success;
 }
+
+/*
+bool checkCollision ( Ball ball, BrickConfig brickConfig ) {
+	int leftBall,	leftBrick;
+	int rightBall,	rightBrick;
+	int topBall,	topBrick;
+	int bottomBall,	bottomBrick;
+
+	leftBall	= ball.getX();					
+	rightBall	= ball.getX() + ball.getRadius() * 2;
+	topBall		= ball.getY();
+	bottomBall  = ball.getY() + ball.getRadius() * 2;
+
+	for (something) { //TODO this nonsense
+		
+		leftBrick	= brickConfig.getX();
+		rightBrick	= brickConfig.getX() + b.getWidth();
+		topBall		= brickConfig.getY();
+		bottomBrick = brickConfig.getY() + b.getHeight();
+
+		if( bottomBall  <= topBrick )		return false;
+		if( topBall		>= bottomBrick )	return false;
+		if( rightBall	<= leftBrick )		return false;
+		if( leftBall	>= rightBrick )		return false;
+		return true;
+	}
+}*/
 
 void close() {
 	
@@ -163,6 +190,8 @@ int main( int argc, char* args[]) {
 					//Update screen
 					SDL_RenderPresent( gRenderer );
 				}
+				//ball.move();                     
+				//SDL_RenderPresent( gRenderer );
 			}
 		}
 	}

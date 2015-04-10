@@ -27,6 +27,7 @@ public:
 
 	Ball ();
 	void set();
+	void move();
 	void render( SDL_Renderer* );
     
 };

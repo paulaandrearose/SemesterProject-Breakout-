@@ -14,7 +14,7 @@ void Ball::set() {
 	radius = 10;
 	xPos = SCREEN_WIDTH / 2;
 	yPos = 11 * SCREEN_HEIGHT / 12 - radius;
-	speed = 5; 
+	speed = 1; 
 	xVel = speed;
 	yVel = speed;  
 	/*note that the ball will be traveling at a 45 degree angle as it is set above.
@@ -22,6 +22,29 @@ void Ball::set() {
 	  no need for any sass about speed not being the actual speed (the actual speed 
 	  would be sqrt(xVel^2+yVel^2), but thats just lots of extra computation, so 
 	  lets be lazy and not mathematical for now :)			                       */					
+}
+
+void Ball::move() { //doesn't work yet
+	xPos += xVel;
+	yPos += yVel;
+
+	if( xPos <= leftBoundry ) {
+		xPos = leftBoundry;
+		xVel *= -1;
+	}
+	else if( xPos >= rightBoundry ) {
+		xPos = rightBoundry - 2 * radius;
+		xVel *= -1;
+	}
+
+	if( yPos <= topBoundry ) {
+		yPos = topBoundry;
+		yVel *= -1;
+	}
+	else if( yPos >= bottomBoundry ) {
+		yPos = bottomBoundry - 2 * radius;
+		yVel *= -1;
+	}
 }
 
 /*void Ball::render( SDL_Renderer *gRenderer ) {
