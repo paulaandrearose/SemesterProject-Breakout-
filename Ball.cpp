@@ -50,7 +50,10 @@ void Ball::move() { //doesn't work yet
 		yPos = bottomBoundry - 2 * radius;
 		yVel *= -1;
 	}
-	
+  left = xPos;
+  right = left + 2 * radius;
+  top = yPos;
+  bottom = top + 2 * radius;
 }
 
 /*void Ball::render( SDL_Renderer *gRenderer ) {
@@ -60,8 +63,8 @@ void Ball::move() { //doesn't work yet
 		xPos-2, yPos,		xPos-1, yPos,		xPos, yPos,		xPos+1, yPos,		xPos+2, yPos,
 		xPos-2, yPos+1,		xPos-1, yPos+1,		xPos, yPos+1,	xPos+1, yPos+1,		xPos+2, yPos+1,
 							xPos-1, yPos+2,		xPos, yPos+2,	xPos+1, yPos+2				};
-	/*  so SDL does not come with a simple circle generator, so that will make
-	    something that looks somewhat like a circle							       *//*
+	  so SDL does not come with a simple circle generator, so that will make
+	    something that looks somewhat like a circle							       
 	SDL_SetRenderDrawColor( gRenderer, 0x50, 0xFF, 0x90, 0xFF );
 	SDL_RenderDrawPoints( gRenderer, ball, 21 );
 }*/

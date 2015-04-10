@@ -6,7 +6,6 @@ class Paddle;
 class BrickConfig;
 class Brick;
 
-#include <SDL.h>
 #include <stdio.h>
 #include <cmath>
 #include "Breakout.h"
@@ -22,6 +21,7 @@ class Ball
 	int xVel;
 	int yVel;
 	int speed;
+  int left, right, top, bottom;
 
 public:
 
