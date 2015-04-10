@@ -1,25 +1,35 @@
-class Ball(){
+#ifndef _BALL_H_INCLUDED_
+#define _BALL_H_INCLUDED_
 
-int xPos = 300;
-int yPos = 250;
-int xSpeed 2;
-int ySpeed 2;
-const int widthBall = 10;
-const int heightBall = 10;
+class Breakout;
+class Paddle;
+class BrickConfig;
+class Brick;
+
+#include <stdio.h>
+#include <cmath>
+#include "Breakout.h"
+#include "Paddle.h"
+#include "BrickConfig.h"
+#include "Brick.h"
+
+class Ball
+{
+	int radius;
+	int xPos;
+	int yPos;
+	int xVel;
+	int yVel;
+	int speed;
+  int left, right, top, bottom;
 
 public:
-Ball(SDL_Renderer * renderer, int xspeed, int yspeed, int startX, int startY);
-void move();
-void setBspeedX(int newXSpeed);
-void setBspeedY(int newYSpeed);
-void setWidthBall();
-void  setHeightBall();
 
-int getXBall();
-int getYBall();
-int getBspeedX();
-int getBspeedY();
-int getWidthBall();
-int getHeightBall();
-  
+	Ball ();
+	void set();
+	void move();
+	void render( SDL_Renderer* );
+    
 };
+
+#endif

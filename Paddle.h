@@ -2,15 +2,17 @@
 #define _PADDLE_H_INCLUDED_
 
 class Breakout;
-//class Brick;
-//class BrickConfig;
-//class Ball;
+class Brick;
+class BrickConfig;
+class Ball;
 
 #include <SDL.h>
 #include <stdio.h>
 #include <string>
-#include <cmath>
 #include "Breakout.h"
+#include "Brick.h"
+#include "BrickConfig.h"
+#include "Ball.h"
 
 class Paddle
 {
@@ -19,27 +21,22 @@ class Paddle
 	int xVel;
 	int width;
 	int height;
+	int speed;
 
-	SDL_Texture * padIMG;
-	//SDL_Render * padREND;
-
-
-    public:
+public:
 
 	Paddle();
-    //Paddle(SDL_Renderer * padREND);
+	void set();
 	void movePaddle();
 	void setXVel( int newVel );
 	int getXVel();
-	int getX();
-	int getY();
-	int getWidth();
-	int getHeight();
 	void render( SDL_Renderer* );
 
 };
 
 #endif
+
+
 
 
 

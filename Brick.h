@@ -1,12 +1,32 @@
+#ifndef _BRICK_H_INCLUDED_
+#define _BRICK_H_INCLUDED_
+
+class Breakout;
+class Paddle;
+class BrickConfig;
+class Ball;
+
+#include <SDL.h>
+#include <stdio.h>
+#include "Breakout.h"
+#include "Paddle.h"
+#include "BrickConfig.h"
+#include "Ball.h"
+
 class Brick
 {
-  int xPos = 0;
-  int yPos = 0;
-  const int widthBrick = 0;
-  const int heightBrick = 0;
+	int xPos;
+	int yPos;
+	int width;
+	int height;
   
-  public:
-    Brick(int x, int y, int width, int height);
-    int getX();
+public:
+  
+	Brick();
+	Brick( int x, int y, int width, int height );
+	void set( int x, int y, int width, int height );
+	void render( SDL_Renderer* );
     
-}
+};
+
+#endif
