@@ -24,18 +24,16 @@ void Paddle::movePaddle(){
 	//xPos += xVel * velMult;
 	xPos += xVel;
 
-	if(xPos <= leftBoundry)
-	{
+	if( xPos <= leftBoundry ) {
 		xPos = leftBoundry;
 	}
 
-	else if(xPos >= ( rightBoundry - width ) )
-	{
+	else if(xPos >= ( rightBoundry - width ) ) {
 		xPos = rightBoundry - width;
 	}
 }
 
-void Paddle::setXVel(int newVel){
+void Paddle::setXVel( int newVel ){
 	xVel = newVel;
 }
 
