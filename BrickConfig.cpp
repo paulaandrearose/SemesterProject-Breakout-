@@ -44,3 +44,8 @@ void BrickConfig::render( SDL_Renderer* gRenderer ) {
 		brickVect[ i ].render( gRenderer );
 	}
 }
+
+void BrickConfig::removeBrick(int row, int col){
+	numBricks --;
+}
+}
