@@ -33,7 +33,7 @@ public:
 	BrickConfig(); 
 	void set();
 	void render( SDL_Renderer* );
-	void removeBrick();
+	void removeBrick(int row, int col);
 };
 
 
